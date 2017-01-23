@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>Employee Profile</title>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+
+<div class="panel-group" id="accordion" ng-app="myApp" ng-controller="myCtrl">
+	<div class="panel panel-default" ng-repeat="x in Employee">
+		<div class="panel-heading">
+			<h4 class="panel-title glyphicon glyphicon-user">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{x.Name}}"> {{x.Name}} </a>
+			</h4>
+		</div>
+		<div id="collapse{{x.Name}}" class="panel-collapse collapse">
+			<div class="panel-body" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" ng-click="ShowDetail(this);">
+				<span class="glyphicon glyphicon-hand-right"></span> {{x.BIO}}
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+   $scope.Employee = [
+	    {Name : "Barack_Obama", BIO : "Since 2009,Date of birth: August 4th 1961,Born in: Honolulu,Hawaii,Number of terms in office: 2 (8 Years),Democratic Party,Start of reign: January 20th 2009,The 44th President of the USA "},
+	    {Name : "George_W_Bush", BIO : "2001 - 2009,Date of birth: July 6th 1946,Born in: New Haven,Connecticut,Number of terms in office: 2 (8 Years),Republican Party,Start of reign: January 20th 2001,End of reign: January 20th 2009,The 43rd President of the USA "},
+	    {Name : "Bill_Clinton", BIO : "1993 - 2001,Date of birth: August 19th 1946,Born in: Hope,Arkansas,Number of terms in office: 2 (8 Years),Democratic Party,Start of reign: January 20th 1993,End of reign: January 20th 2001,The 42nd President of the USA "},
+	    {Name : "George_Bush", BIO : "1989 - 1993,Date of birth: June 12th 1924,Born in: Milton,Massachusetts,Number of terms in office: 1 (4 Years),Republican Party,Start of reign: January 20th 1989,End of reign: January 20th 1993,The 41st President of the USA "}
+
+	];
+
+   $scope.ShowDetail = function(elem) {
+        alert("[ Profile Of Employee: " + elem.x.Name + " ]\n\n" + elem.x.BIO.replace(new RegExp(",","gm"),"\n"));
+    };
+});
+</script>
+
+</body>
+</html>
